@@ -15,6 +15,8 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
   console.debug("Initialize database connection...");
   await sequelize.sync();
 
+  //  print system environment variables
+  console.log("Environment variables" + JSON.stringify(process.env.POSTGRESS_USERNAME));
   const app = express();
   const port = process.env.PORT || 8080;
 
