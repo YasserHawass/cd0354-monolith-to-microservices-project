@@ -1,0 +1,8 @@
+
+AWS_BUCKET=udgramx
+AWS_PROFILE=default
+AWS_REGION=us-east-1
+JWT_SECRET=testing
+POSTGRESS_DB=postgres
+POSTGRESS_HOST=postgres.cmhwdobp3qqm.us-east-1.rds.amazonaws.com
+URL=http://localhost:8100
