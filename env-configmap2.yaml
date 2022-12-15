@@ -1,4 +1,4 @@
-AWS_BUCKET=udgramx
+AWS_BUCKET=udagramx
 AWS_PROFILE=default
 AWS_REGION=us-east-1
 JWT_SECRET=testing
