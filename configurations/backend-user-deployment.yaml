@@ -16,20 +16,28 @@ spec:
     spec:
       containers:
       - image: yasserh/udagram-api-user:latest
-        name: backend-user 
-        imagePullPolicy: Always  
+        name: backend-user
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
             memory: "2024Mi"
-            cpu: "500m"      
-        envFrom:
-          - secretRef:
-              name: env-secret
-          - configMapRef:
-              name: envconfigmap
+            cpu: "500m"
+        env:
+        - name: URL
+          value: "http://localhost:8100"
+        - name: JWT_SECRET
+          value: "testing"
+        - name: POSTGRES_DB
+          value: "postgres"
+        - name: POSTGRES_HOST
+          value: "postgres.cmhwdobp3qqm.us-east-1.rds.amazonaws.com"
+        - name: POSTGRES_PASSWORD
+          value: "123456789"
+        - name: POSTGRES_USERNAME
+          value: "postgres"
       restartPolicy: Always
 
 

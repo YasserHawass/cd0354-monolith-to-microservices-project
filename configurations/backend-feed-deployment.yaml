@@ -18,18 +18,38 @@ spec:
       - image: yasserh/udagram-api-feed:latest
         name: backend-feed
         imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
-        envFrom:
-          - secretRef:
-              name: env-secret
-          - configMapRef:
-              name: envconfigmap
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "2024Mi"
+            cpu: "500m"
+        env:
+        - name: URL
+          value: "http://localhost:8100"
+        - name: AWS_BUCKET
+          value: "udagramx"
+        - name: AWS_PROFILE
+          value: "default"
+        - name: AWS_REGION
+          value: "us-east-1"
+        - name: JWT_SECRET
+          value: "testing"
+        - name: POSTGRES_DB
+          value: "postgres"
+        - name: POSTGRES_HOST
+          value: "postgres.cmhwdobp3qqm.us-east-1.rds.amazonaws.com"
+        - name: POSTGRES_PASSWORD
+          value: "123456789"
+        - name: POSTGRES_USERNAME
+          value: "postgres"
         volumeMounts:
-        - name: aws-volume
-          mountPath: /root/.aws
+        - name: aws-secret
+          mountPath: "/root/.aws/"
+          readOnly: true
       restartPolicy: Always
       volumes:
-        - name: aws-volume
-          secret:
-            secretName: aws-secret2
+      - name: aws-secret
+        secret:
+          secretName: aws-secret2
